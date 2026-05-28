@@ -45,15 +45,16 @@ function OpeningPage({ onNext }: { onNext: () => void }) {
         <img src="/demo/cover.png" alt="123 Maple Lane" className="w-full h-full object-cover" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(26,18,6,0.75))" }} />
         <div className="absolute bottom-0 left-0 right-0 px-10 pb-10 flex flex-col gap-2">
-          <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(212,175,55,0.9)", fontFamily: LORA }}>Home Story</p>
+          <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(168,131,74,0.9)", fontFamily: LORA }}>Home Story</p>
           <h1 className="text-5xl font-bold text-white leading-tight" style={{ fontFamily: PLAYFAIR }}>Welcome Home</h1>
           <p className="text-base" style={{ color: "rgba(255,255,255,0.7)", fontFamily: LORA }}>123 Maple Lane · Austin, TX 78701</p>
         </div>
       </div>
-      <div className="flex items-center justify-between px-10 py-6" style={{ background: PAGE_BG, borderTop: PAGE_BORDER }}>
+      <div className="flex items-center justify-between px-8 py-5" style={{ background: PAGE_BG, borderTop: PAGE_BORDER }}>
         <p className="text-sm italic" style={{ color: INK_LIGHT, fontFamily: LORA }}>A story from the family who called this home.</p>
-        <button onClick={onNext} className="flex items-center gap-2 text-sm font-semibold hover:opacity-70 transition-opacity" style={{ color: GOLD, fontFamily: LORA }}>
-          Table of Contents <span>→</span>
+        <button onClick={onNext} className="flex items-center gap-2 px-4 py-2.5 rounded-full hover:opacity-70 transition-opacity"
+          style={{ color: GOLD, fontFamily: LORA, fontSize: "13px", fontWeight: 600, border: "1px solid var(--gold)" }}>
+          Contents <span style={{ fontSize: "20px", lineHeight: 1 }}>›</span>
         </button>
       </div>
     </div>
@@ -83,14 +84,14 @@ function TocPage({ onChapter, onPrev }: { onChapter: (p: PageId) => void; onPrev
             <button
               key={ch.id}
               onClick={() => onChapter(ch.id)}
-              className="flex items-center gap-5 py-5 text-left group hover:bg-amber-50 transition-colors px-2 -mx-2 rounded-lg"
+              className="flex items-center gap-5 py-5 text-left group hover:bg-stone-50 transition-colors px-2 -mx-2 rounded-lg"
             >
-              <span className="text-2xl font-bold w-8 text-right flex-shrink-0 group-hover:text-amber-700 transition-colors"
+              <span className="text-2xl font-bold w-8 text-right flex-shrink-0 group-hover:text-stone-700 transition-colors"
                 style={{ fontFamily: PLAYFAIR, color: GOLD }}>
                 {ch.num}
               </span>
               <div className="flex-1">
-                <div className="text-lg font-semibold group-hover:text-amber-900 transition-colors" style={{ fontFamily: PLAYFAIR, color: INK }}>{ch.title}</div>
+                <div className="text-lg font-semibold group-hover:text-stone-900 transition-colors" style={{ fontFamily: PLAYFAIR, color: INK }}>{ch.title}</div>
                 <div className="text-sm mt-0.5" style={{ fontFamily: LORA, color: INK_LIGHT }}>{ch.subtitle}</div>
               </div>
               <span className="opacity-0 group-hover:opacity-100 transition-opacity text-sm" style={{ color: GOLD }}>→</span>
@@ -98,12 +99,14 @@ function TocPage({ onChapter, onPrev }: { onChapter: (p: PageId) => void; onPrev
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-between px-10 py-5" style={{ borderTop: PAGE_BORDER, background: PAGE_BG }}>
-        <button onClick={onPrev} className="text-sm hover:opacity-70 transition-opacity flex items-center gap-1.5" style={{ color: INK_LIGHT, fontFamily: LORA }}>
-          ← Cover
+      <div className="flex items-center justify-between px-8 py-4" style={{ borderTop: PAGE_BORDER, background: PAGE_BG }}>
+        <button onClick={onPrev} className="flex items-center gap-2 px-4 py-2.5 rounded-full hover:opacity-70 transition-opacity"
+          style={{ color: INK_LIGHT, fontFamily: LORA, fontSize: "13px", border: "1px solid var(--border)" }}>
+          <span style={{ fontSize: "20px", lineHeight: 1 }}>‹</span> Cover
         </button>
-        <button onClick={() => onChapter("ch1")} className="text-sm font-semibold flex items-center gap-1.5 hover:opacity-70 transition-opacity" style={{ color: GOLD, fontFamily: LORA }}>
-          Begin Reading →
+        <button onClick={() => onChapter("ch1")} className="flex items-center gap-2 px-4 py-2.5 rounded-full hover:opacity-70 transition-opacity"
+          style={{ color: GOLD, fontFamily: LORA, fontSize: "13px", fontWeight: 600, border: "1px solid var(--gold)" }}>
+          Begin Reading <span style={{ fontSize: "20px", lineHeight: 1 }}>›</span>
         </button>
       </div>
     </div>
@@ -118,9 +121,9 @@ function StoryChapter({
 }) {
   return (
     <div className="flex flex-col h-full overflow-hidden" style={{ background: PAGE_BG }}>
-      <div className="relative overflow-hidden" style={{ height: "52%" }}>
-        <img src={imageSrc} alt={title} className="w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(250,246,238,0.6))" }} />
+      <div className="relative overflow-hidden" style={{ height: "46%" }}>
+        <img src={imageSrc} alt={title} className="w-full h-full object-cover" style={{ objectPosition: "center top" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(248,246,242,0.6))" }} />
       </div>
       <div className="flex-1 overflow-y-auto px-10 py-7 flex flex-col gap-4">
         <div>
@@ -130,12 +133,14 @@ function StoryChapter({
         <div className="border-t" style={{ borderColor: "var(--border)" }} />
         <div className="text-sm leading-relaxed whitespace-pre-line" style={{ fontFamily: LORA, color: INK_LIGHT }}>{text}</div>
       </div>
-      <div className="flex items-center justify-between px-10 py-5" style={{ borderTop: PAGE_BORDER, background: PAGE_BG }}>
-        <button onClick={onPrev} className="text-sm hover:opacity-70 transition-opacity flex items-center gap-1.5" style={{ color: INK_LIGHT, fontFamily: LORA }}>
-          ← {prevLabel ?? "Back"}
+      <div className="flex items-center justify-between px-8 py-4" style={{ borderTop: PAGE_BORDER, background: PAGE_BG }}>
+        <button onClick={onPrev} className="flex items-center gap-2 px-4 py-2.5 rounded-full hover:opacity-70 transition-opacity"
+          style={{ color: INK_LIGHT, fontFamily: LORA, fontSize: "13px", border: "1px solid var(--border)" }}>
+          <span style={{ fontSize: "20px", lineHeight: 1 }}>‹</span> {prevLabel ?? "Back"}
         </button>
-        <button onClick={onNext} className="text-sm font-semibold flex items-center gap-1.5 hover:opacity-70 transition-opacity" style={{ color: GOLD, fontFamily: LORA }}>
-          {nextLabel ?? "Next Chapter"} →
+        <button onClick={onNext} className="flex items-center gap-2 px-4 py-2.5 rounded-full hover:opacity-70 transition-opacity"
+          style={{ color: GOLD, fontFamily: LORA, fontSize: "13px", fontWeight: 600, border: "1px solid var(--gold)" }}>
+          {nextLabel ?? "Next Chapter"} <span style={{ fontSize: "20px", lineHeight: 1 }}>›</span>
         </button>
       </div>
     </div>
@@ -231,12 +236,14 @@ function RoiChapter({ onPrev, onNext }: { onPrev: () => void; onNext: () => void
         </div>
       </div>
 
-      <div className="flex items-center justify-between px-8 py-5" style={{ borderTop: PAGE_BORDER, background: PAGE_BG }}>
-        <button onClick={onPrev} className="text-sm hover:opacity-70 transition-opacity flex items-center gap-1.5" style={{ color: INK_LIGHT, fontFamily: LORA }}>
-          ← Our Favorite Story
+      <div className="flex items-center justify-between px-8 py-4" style={{ borderTop: PAGE_BORDER, background: PAGE_BG }}>
+        <button onClick={onPrev} className="flex items-center gap-2 px-4 py-2.5 rounded-full hover:opacity-70 transition-opacity"
+          style={{ color: INK_LIGHT, fontFamily: LORA, fontSize: "13px", border: "1px solid var(--border)" }}>
+          <span style={{ fontSize: "20px", lineHeight: 1 }}>‹</span> Prev
         </button>
-        <button onClick={onNext} className="text-sm font-semibold flex items-center gap-1.5 hover:opacity-70 transition-opacity" style={{ color: GOLD, fontFamily: LORA }}>
-          Neighborhood Stories →
+        <button onClick={onNext} className="flex items-center gap-2 px-4 py-2.5 rounded-full hover:opacity-70 transition-opacity"
+          style={{ color: GOLD, fontFamily: LORA, fontSize: "13px", fontWeight: 600, border: "1px solid var(--gold)" }}>
+          Next <span style={{ fontSize: "20px", lineHeight: 1 }}>›</span>
         </button>
       </div>
     </div>
@@ -247,92 +254,99 @@ function RoiChapter({ onPrev, onNext }: { onPrev: () => void; onNext: () => void
 
 function BookCover({ onOpen }: { onOpen: () => void }) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center"
-      style={{ background: "radial-gradient(ellipse at center, #2A1E0E 0%, #120D05 70%)" }}>
+    <div className="story-theme fixed inset-0 flex items-center justify-center"
+      style={{ background: "radial-gradient(ellipse at center, #252016 0%, #0F0E09 70%)" }}>
 
       {/* Subtle vignette */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.5) 100%)" }} />
 
-      <div className="relative flex flex-col items-center gap-8 z-10">
-        {/* The Book */}
-        <div className="animate-fade-up" style={{ animationDelay: "0s" }}>
-          <div className="relative flex" style={{
-            width: "min(300px, 52vw)",
-            height: "min(420px, 73vw)",
-            filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.75)) drop-shadow(0 8px 20px rgba(0,0,0,0.5))",
-          }}>
-            {/* Spine */}
-            <div className="flex-shrink-0 relative overflow-hidden"
-              style={{ width: "28px", background: "linear-gradient(to right, #080601, #1A1208, #0E0A03)", borderRadius: "5px 0 0 5px", borderRight: "1px solid rgba(0,0,0,0.6)" }}>
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.04), transparent 30%, transparent 70%, rgba(255,255,255,0.02))" }} />
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs tracking-widest whitespace-nowrap"
-                style={{ writingMode: "vertical-rl", transform: "rotate(180deg) translate(50%, 50%)", color: "rgba(212,175,55,0.35)", fontFamily: LORA, fontSize: "9px", letterSpacing: "0.18em" }}>
-                HOME STORY
-              </span>
-            </div>
+      <div className="relative flex flex-col items-center gap-6 z-10">
+        {/* Book + open arrow side by side */}
+        <div className="flex items-center gap-5 md:gap-7">
 
-            {/* Cover face — photo with overlay */}
-            <div className="flex-1 relative overflow-hidden" style={{ borderRadius: "0 4px 4px 0" }}>
-              {/* Photo */}
-              <img src="/demo/cover.png" alt="Cover" className="absolute inset-0 w-full h-full object-cover" />
-              {/* Dark overlay */}
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(10,7,2,0.45) 0%, rgba(10,7,2,0.2) 40%, rgba(10,7,2,0.7) 75%, rgba(10,7,2,0.88) 100%)" }} />
-              {/* Gold border inset */}
-              <div className="absolute inset-2.5 pointer-events-none" style={{ border: "1px solid rgba(212,175,55,0.3)", borderRadius: "2px" }} />
-
-              {/* Text content */}
-              <div className="absolute inset-0 flex flex-col justify-between p-6">
-                {/* Top: tagline */}
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 h-px" style={{ background: "rgba(212,175,55,0.4)" }} />
-                    <span className="text-xs tracking-widest uppercase" style={{ color: "rgba(212,175,55,0.7)", fontFamily: LORA, fontSize: "9px" }}>Home Story</span>
-                    <div className="flex-1 h-px" style={{ background: "rgba(212,175,55,0.4)" }} />
-                  </div>
-                </div>
-
-                {/* Bottom: title + address */}
-                <div className="flex flex-col gap-2">
-                  <h1 style={{ fontFamily: PLAYFAIR, color: "#F0E0A0", fontSize: "clamp(1.4rem, 5vw, 2rem)", lineHeight: 1.15, fontWeight: 700, textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}>
-                    Welcome<br />Home
-                  </h1>
-                  <div className="w-8 h-px" style={{ background: "rgba(212,175,55,0.5)" }} />
-                  <p style={{ color: "rgba(220,200,150,0.7)", fontFamily: LORA, fontSize: "11px", letterSpacing: "0.04em" }}>
-                    123 Maple Lane · Austin, TX
-                  </p>
-                </div>
+          {/* The Book */}
+          <div className="animate-fade-up" style={{ animationDelay: "0s" }}>
+            <div className="relative flex" style={{
+              width: "min(360px, 58vw)",
+              height: "min(510px, 82vw)",
+              filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.75)) drop-shadow(0 8px 20px rgba(0,0,0,0.5))",
+            }}>
+              {/* Spine */}
+              <div className="flex-shrink-0 relative overflow-hidden"
+                style={{ width: "30px", background: "linear-gradient(to right, #0C0B07, #1A1810, #0E0C08)", borderRadius: "5px 0 0 5px", borderRight: "1px solid rgba(0,0,0,0.6)" }}>
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.04), transparent 30%, transparent 70%, rgba(255,255,255,0.02))" }} />
+                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs tracking-widest whitespace-nowrap"
+                  style={{ writingMode: "vertical-rl", transform: "rotate(180deg) translate(50%, 50%)", color: "rgba(168,131,74,0.35)", fontFamily: LORA, fontSize: "9px", letterSpacing: "0.18em" }}>
+                  HOME STORY
+                </span>
               </div>
 
-              {/* Page-edge highlight */}
-              <div className="absolute right-0 inset-y-0 w-px" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.15), rgba(255,255,255,0.05))" }} />
-            </div>
+              {/* Cover face — photo with slow zoom */}
+              <div className="flex-1 relative overflow-hidden" style={{ borderRadius: "0 4px 4px 0" }}>
+                <img src="/demo/cover.png" alt="Cover" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" style={{ objectPosition: "center top" }} />
+                {/* Dark overlay */}
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(10,7,2,0.35) 0%, rgba(10,7,2,0.1) 40%, rgba(10,7,2,0.65) 75%, rgba(10,7,2,0.88) 100%)" }} />
+                {/* Brass border inset */}
+                <div className="absolute inset-2.5 pointer-events-none" style={{ border: "1px solid rgba(168,131,74,0.3)", borderRadius: "2px" }} />
 
-            {/* Page edges (right side) */}
-            <div className="absolute -right-2 inset-y-1 flex flex-col gap-px" style={{ width: "8px" }}>
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="flex-1" style={{ background: `rgba(240,230,210,${0.12 - i * 0.015})`, borderRadius: "0 1px 1px 0" }} />
-              ))}
+                {/* Text content */}
+                <div className="absolute inset-0 flex flex-col justify-between p-6">
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 h-px" style={{ background: "rgba(168,131,74,0.4)" }} />
+                    <span className="tracking-widest uppercase" style={{ color: "rgba(168,131,74,0.7)", fontFamily: LORA, fontSize: "9px" }}>Home Story</span>
+                    <div className="flex-1 h-px" style={{ background: "rgba(168,131,74,0.4)" }} />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h1 style={{ fontFamily: PLAYFAIR, color: "#E8D5A8", fontSize: "clamp(1.4rem, 5vw, 2rem)", lineHeight: 1.15, fontWeight: 700, textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}>
+                      Welcome<br />Home
+                    </h1>
+                    <div className="w-8 h-px" style={{ background: "rgba(168,131,74,0.5)" }} />
+                    <p style={{ color: "rgba(200,178,130,0.7)", fontFamily: LORA, fontSize: "11px", letterSpacing: "0.04em" }}>
+                      123 Maple Lane · Austin, TX
+                    </p>
+                  </div>
+                </div>
+                <div className="absolute right-0 inset-y-0 w-px" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.15), rgba(255,255,255,0.05))" }} />
+              </div>
+
+              {/* Page edges */}
+              <div className="absolute -right-2 inset-y-1 flex flex-col gap-px" style={{ width: "8px" }}>
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className="flex-1" style={{ background: `rgba(240,230,210,${0.12 - i * 0.015})`, borderRadius: "0 1px 1px 0" }} />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Open button */}
-        <button
-          onClick={onOpen}
-          className="animate-fade-up group flex items-center gap-3 transition-all hover:gap-4"
-          style={{ animationDelay: "0.35s", fontFamily: LORA, color: "rgba(212,175,55,0.75)" }}
-        >
-          <div className="h-px w-8 transition-all group-hover:w-12" style={{ background: "rgba(212,175,55,0.4)" }} />
-          <span className="text-sm tracking-widest uppercase" style={{ fontSize: "11px", letterSpacing: "0.2em" }}>Open the Story</span>
-          <div className="h-px w-8 transition-all group-hover:w-12" style={{ background: "rgba(212,175,55,0.4)" }} />
-        </button>
+          {/* Open Story arrow — right of book */}
+          <button
+            onClick={onOpen}
+            className="animate-fade-up flex flex-col items-center gap-3 group"
+            style={{ animationDelay: "0.45s" }}
+          >
+            <div
+              className="flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
+              style={{
+                width: "64px", height: "64px",
+                border: "2px solid rgba(168,131,74,0.65)",
+                background: "rgba(168,131,74,0.13)",
+              }}
+            >
+              <span style={{ color: "rgba(168,131,74,0.95)", fontSize: "34px", marginLeft: "4px", lineHeight: 1 }}>›</span>
+            </div>
+            <span className="text-center uppercase tracking-widest leading-relaxed"
+              style={{ color: "rgba(168,131,74,0.75)", fontFamily: LORA, fontSize: "9px", letterSpacing: "0.2em" }}>
+              Open<br />Story
+            </span>
+          </button>
+        </div>
 
         {/* Back link */}
         <Link
           href="/listing"
           className="animate-fade-up text-xs transition-opacity hover:opacity-60"
-          style={{ animationDelay: "0.5s", color: "rgba(212,175,55,0.25)", fontFamily: LORA, letterSpacing: "0.05em" }}
+          style={{ animationDelay: "0.65s", color: "rgba(168,131,74,0.25)", fontFamily: LORA, letterSpacing: "0.05em" }}
         >
           ← Back to Listing
         </Link>
@@ -393,18 +407,18 @@ export default function StoryPage() {
   };
 
   return (
-    <div className="fixed inset-0 flex flex-col" style={{ background: "#1C1408" }}>
+    <div className="story-theme fixed inset-0 flex flex-col" style={{ background: "#1A1814" }}>
       {/* Book chrome */}
       <div className="flex items-center justify-between px-6 py-3 flex-shrink-0"
-        style={{ background: "rgba(28,20,8,0.95)", borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
+        style={{ background: "rgba(24,22,16,0.95)", borderBottom: "1px solid rgba(168,131,74,0.12)" }}>
         <Link href="/listing" className="text-xs hover:opacity-60 transition-opacity flex items-center gap-1.5"
-          style={{ color: "rgba(212,175,55,0.5)", fontFamily: LORA }}>
+          style={{ color: "rgba(168,131,74,0.5)", fontFamily: LORA }}>
           ← Listing
         </Link>
-        <span className="text-xs tracking-widest uppercase" style={{ color: "rgba(212,175,55,0.4)", fontFamily: LORA }}>
+        <span className="text-xs tracking-widest uppercase" style={{ color: "rgba(168,131,74,0.4)", fontFamily: LORA }}>
           Home Story · 123 Maple Lane
         </span>
-        <span className="text-xs" style={{ color: "rgba(212,175,55,0.3)", fontFamily: LORA }}>
+        <span className="text-xs" style={{ color: "rgba(168,131,74,0.3)", fontFamily: LORA }}>
           {pageIdx + 1} / {PAGE_ORDER.length}
         </span>
       </div>
@@ -462,7 +476,7 @@ export default function StoryPage() {
             style={{
               width: i === pageIdx ? "20px" : "6px",
               height: "6px",
-              background: i === pageIdx ? "rgba(212,175,55,0.8)" : "rgba(212,175,55,0.2)",
+              background: i === pageIdx ? "rgba(168,131,74,0.8)" : "rgba(168,131,74,0.2)",
             }}
           />
         ))}
